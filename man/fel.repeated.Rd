@@ -56,7 +56,7 @@ Fits multiple ellipses with one call, separated by the factors \code{subjects} a
     \item{Estimates}{Parameter estimates for all ellipses in matrix form.}
     \item{Std.Errors}{Standard errors for all ellipses in matrix form.}
     \code{summary.ellipsefitlist} returns an object of class \code{ellipsesummarylist} which consists of
-    \item{models}{Separate model summaries for each ellipse, see \code{\link{summary.ellipsefit}}.}
+    \item{models}{ a vector of separate model summaries for each ellipse, see \code{\link{summary.ellipsefit}}.}
     \item{values}{Bootstrapped parameter estimates, standard errors, quantiles, and more for each ellipse.}
     \item{Boot.Estimates}{Bootstrapped parameter estimates with reduced bias.}
     \item{Boot.Std.Errors}{Standard errors provided by bootstrapping.}
