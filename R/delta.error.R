@@ -63,7 +63,7 @@ delta.error <- function(g){
     b.x <- deltamethod(~sqrt(x1^2+x2^2),c(z$coefficients[-1],z2$coefficients[-1]), cov.matrix)
     area<-deltamethod(~pi*sqrt(x1^2+x2^2)*x3,c(z$coefficients[-1],z2$coefficients[-1]), cov.matrix)
     coercion<-deltamethod(~sqrt(x1^2+x2^2)/sqrt(1+(x4/x3)^2),c(z$coefficients[-1],z2$coefficients[-1]), cov.matrix)
-    lag<-deltamethod(~(1/pi)*atan(x3/x4),c(z$coefficients[-1],z2$coefficients[-1]), cov.matrix)*g$fit.statistics["period"]/2
+    lag<-deltamethod(~atan(x3/x4)/pi,c(z$coefficients[-1],z2$coefficients[-1]), cov.matrix)*g$fit.statistics["period"]/2
     
     ampx<-deltamethod(~sqrt(x1^2+x2^2),z$coefficients[-1], cov.matrix[1:2,1:2])
     ampy<-deltamethod(~sqrt(x1^2+x2^2),z2$coefficients[-1], cov.matrix[3:4,3:4]) 
