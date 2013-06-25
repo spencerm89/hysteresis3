@@ -20,7 +20,7 @@ Errors in both the input and the output are given a standard deviation of 0.1 fo
   }
 }
 \examples{
-##Created using
+## Data is created using the followiing code
 set.seed(1)
 ellip1 <- mel(method = 2, retention = 0.4, b.x = 0.6, b.y = 0.8, cx = 0, cy = 0, 
     sd.x = 0.1, sd.y = 0.1, period = 24, n.points = 48, phase.angle = pi/2)
@@ -34,7 +34,7 @@ subjects <- c(rep("A", length(ellip1$x)), rep("B", length(ellip2$x)), rep("C",
     length(ellip3$x)))  
     repeated <- rep(c(1,2),each=24,times=3)  
     
-##Use to create 6 ellipses.
+##Use data file to fit 6 ellipses.
 data(EllipseData) 
 six.models <- fel.repeated(EllipseData$X, EllipseData$Y, method = "harmonic2", subjects = EllipseData$subjects,repeated=EllipseData$repeated)
 six.models
