@@ -71,12 +71,13 @@ Bootstrapped estimates for parameter values are provided with \code{\link{summar
   \item{pred.x}{the fitted values for x.}
   \item{pred.y}{the fitted values for y.}
   \item{period.time}{a vector that contains times converted to radians for observations, either estimated after the ellipse has been fitted or given beforehand by \code{times}.}
+\item{fit.statistics}{rudimentary measures, based on the "harmonic2" method, include the Multivariate Final Prediction Error (MFPE) and the AIC for both the output alone and the two variables in combination. 
+Although degree of freedom adjustments are made for other methods, measures of fit require further study.}
+
 \item{values}{a named vector of parameter estimates. See \code{\link{loop.parameters}}.}
  \item{Estimates}{a named vector of parameter estimates. See \code{\link{loop.parameters}}, same as values.}
     \item{Std.Errors}{Delta standard errors produced by the delta method. See \code{\link{delta.error}}.}
   \item{residuals}{algebraic residuals from the model. The function \code{\link{residuals.ellipsefit}} can produce other types of residuals from an \code{ellipsefit} object.}
-\item{fit.statistics}{rudimentary measures, based on the "harmonic2" method, include the Multivariate Final Prediction Error (MFPE) and the AIC for both the output alone and the two variables in combination. 
-Although degree of freedom adjustments are made for other methods, measures of fit require further study.}
 
 \code{summary.ellipsefit} returns an object of class \code{ellipsesummary} which consists of    
   \item{values}{Bootstrapped parameter estimates, standard errors, quantiles, and more for each ellipse.}   
