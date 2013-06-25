@@ -57,22 +57,28 @@ other optional arguments, such as \code{seed},N,\code{cbb}, passed to \code{\lin
 Fits input and output variables x and y that form a hysteresis loop of the form \deqn{x_t=b.x*cos(2pi*t/period+phase.angle)+cx+e_{x,t}} \deqn{y_t=b.y*cos(2pi*t/period+phase.angle)^n+retention*sin(2pi*t/period+phase.angle)^m+cy+e_{y,t}}  where \deqn{t=0,...,n.points-1 if times='equal'} and the error terms e are independently and normally distributed. Also produces a vector of derived values.}
 \value{
 floop returns an object of class \code{fittedloop}.
-  \item{values}{estimated values of various fundamental and derived parameters of the hysteresis loop. See \code{\link{loop.parameters}}}
-<<<<<<< HEAD
-  \item{Estimates}{estimated values of various fundamental and derived parameters of the hysteresis loop. See \code{\link{loop.parameters}}}
-=======
-    \item{Estimates}{same as values.}
->>>>>>> Changes
-  \item{x}{the input.}
+  \item{call}{the function call.}
+  \item{fit}{information dependent on the fitting method used.}
+ \item{x}{the input.}
   \item{y}{the output.}
   \item{pred.x}{fitted x values.}
   \item{pred.y}{fitted y values.}
   \item{period.time}{time vector used to fit x and y.}
-  \item{residuals}{residuals measured by Euclidean distance.}
+  \item{residuals}{residuals measured by Euclidean distance.The function \code{\link{residuals.fittedloop}} can produce other types of residuals}
   \item{extended.classical}{whether or not an extended classical loop is fit.}
-  \item{fit}{the model fit.}
+  \item{fit.statistics}{rudimentary measures, based on the "harmonic2" method, include the Multivariate Final Prediction Error (MFPE) and the AIC for both the output alone and the two variables in combination. 
+Although degree of freedom adjustments are made for other methods, measures of fit require further study.}
+
+\item{values}{a named vector of parameter estimates. See \code{\link{loop.parameters}}.}
+ \item{Estimates}{a named vector of parameter estimates. See \code{\link{loop.parameters}}, same as values.}  
   \item{Std.Errors}{standard errors for parameters derived using the delta method.}
-      If multiple loops are fit simultaneously there will be three arguments to the response, models which will contain the seperate model fits for each loop, Estimates which will have all of the parameter estimates in matrix form, and Std.Errors which will have all of the delta method standard errors in matrix form. See \code{\link{floop.repeated}}.
+
+\code{summary.fittedloop} returns an object of class \code{fittedloop} which consists of    
+  \item{values}{Bootstrapped parameter estimates, standard errors, quantiles, and more for each ellipse.}   
+\item{Boot.Estimates}{Bootstrapped parameter estimates with reduced bias.}    \item{Boot.Std.Errors}{Standard errors provided by bootstrapping.}
+
+
+If multiple loops are fit simultaneously there will be three arguments to the response, models which will contain the seperate model fits for each loop, Estimates which will have all of the parameter estimates in matrix form, and Std.Errors which will have all of the delta method standard errors in matrix form. See \code{\link{floop.repeated}}.
 }
 \references{
 Lapshin, R. (1995) Analytical model for the approximation of hysteresis loop and its application to the scanning tunneling microscope.
