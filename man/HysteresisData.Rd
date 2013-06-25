@@ -20,7 +20,7 @@ Errors in both the input and the output are given a standard deviation of 0.1 fo
   }
 }
 \examples{
-##Created using
+## Data file is created using the following code
 set.seed(1)
 loop1 <- mloop(n=5,m=3, retention = 0.4, b.x = 0.3, b.y = 0.8, cx = 0, cy = 0, 
     sd.x = 0.1, sd.y = 0.1, period = 24, n.points = 48, phase.angle = pi/2)
@@ -33,7 +33,7 @@ Y <- c(loop1$y, loop2$y, loop3$y)
 subjects <- c(rep("A", length(loop1$x)), rep("B", length(loop2$x)), rep("C",length(loop3$x)))  
     repeated <- rep(c(1,2),each=24,times=3)  
     
-##Use 6 Hysteresis Loops  
+##Use data to fit 6 Hysteresis Loops  
 data(HysteresisData)
 six.loops <- floop.repeated(HysteresisData$X, HysteresisData$Y, n=5,m=3,subjects = HysteresisData$subjects,repeated=HysteresisData$repeated)
 six.loops
