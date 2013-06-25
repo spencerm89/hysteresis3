@@ -75,7 +75,8 @@ Bootstrapped estimates for parameter values are provided with \code{\link{summar
  \item{Estimates}{a named vector of parameter estimates. See \code{\link{loop.parameters}}, same as values.}
     \item{Std.Errors}{Delta standard errors produced by the delta method. See \code{\link{delta.error}}.}
   \item{residuals}{algebraic residuals from the model. The function \code{\link{residuals.ellipsefit}} can produce other types of residuals from an \code{ellipsefit} object.}
-\item{fit.statistics}{measures including the Multivariate Final Prediction Error (MFPE) and the AIC for both the output alone and the two variables in combination. These measures are based on the "harmonic2" method, and may not be appropriate for others although degree of freedom adjustments are made.}
+\item{fit.statistics}{rudimentary measures, based on the "harmonic2" method, include the Multivariate Final Prediction Error (MFPE) and the AIC for both the output alone and the two variables in combination. 
+Although degree of freedom adjustments are made for other methods, measures of fit require further study.}
 
 \code{summary.ellipsefit} returns an object of class \code{ellipsesummary} which consists of    
   \item{values}{Bootstrapped parameter estimates, standard errors, quantiles, and more for each ellipse.}   
