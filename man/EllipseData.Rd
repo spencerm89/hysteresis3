@@ -11,7 +11,7 @@ Errors in both the input and the output are given a standard deviation of 0.1 fo
 }
 \usage{data(EllipseData)}
 \format{
-  A data frame with 144 observations on the following 4 variables.
+  A data frame with 144 observations on the following 4 variables. 
   \describe{
     \item{\code{X}}{a numeric vector}
     \item{\code{Y}}{a numeric vector}
