@@ -58,13 +58,12 @@ Fits multiple loops with one call, separated by the factors \code{subjects} and 
  \code{floop.repeated} returns an object of class \code{fittedlooplist}.
     \item{models}{Separate model fits for each loop, see \code{\link{floop}}.}
     \item{Estimates}{Parameter estimates for all loops in matrix form.}
-    \item{Std.Errors}{Standard errors for all loops in matrix form.}
-    \code{summary.fittedlooplist} returns an object of class \code{loopsummarylist} which consists of
+    \item{Std.Errors}{Delta standard errors for all loops in matrix form.}
+    \ For boot=TRUE or code{summary.fittedlooplist} returns an object of class \code{loopsummarylist} which consists of
     \item{models}{Separate model summaries for each ellipse, see \code{\link{summary.fittedloop}}.}
     \item{values}{Bootstrapped parameter estimates, standard errors, quantiles, and more for each loop.}
     \item{Boot.Estimates}{Bootstrapped parameter estimates with reduced bias.}
     \item{Boot.Std.Errors}{Standard errors provided by bootstrapping.}
-    \item{Delta.Std.Errors}{Standard errors provided by the delta method.}
 }
 \references{
 Yang, F. and A. Parkhurst, Efficient Estimation of Elliptical Hysteresis (submitted)
@@ -90,7 +89,7 @@ loopmodels.rep$models["A",1]       #Select one subject, one replication
 
 ### Bootstrap estimates and standard errors (Seed is necessary if want to reproduce results)
 boot.rep.loop=floop.repeated(HysteresisData$X, HysteresisData$Y, n=5,m=3, subjects = HysteresisData$subjects,subjects.in=c("A","C"),repeated=HysteresisData$repeated,boot=TRUE,seed=123)
-boot.rep.loop                 #Gives boot estimates, boot bias, boot SE and boot quartiles WHERE IS BIAS
+boot.rep.loop                 #Gives boot estimates, boot bias, boot SE and boot quartiles
 boot.rep.loop$Boot.Estimates  #Lists boot estimates
 boot.rep.loop$Boot.Std.Errors #Gives boot standard errors 
 
