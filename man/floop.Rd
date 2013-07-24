@@ -19,10 +19,10 @@ numeric input vector.
 numeric output vector.
 }
   \item{n}{
-a number, usually odd and always positive. Parameter of the hysteresis loop. Default is 1, which makes loop an ellipse when m is also equal to 1. See details.
+a positive integer. Shape parameter of the hysteresis loop. Default is 1, which makes loop an ellipse when m is also equal to 1. See details.
 }
   \item{m}{
-a number, usually odd and always positive. Parameter of the hysteresis loop. Default is 1, which makes loop an ellipse when n is also equal to 1. In this case floop will automatically make a call to \code{\link{fel}}. See details.
+a number, usually odd and always positive. Bulging parameter of the hysteresis loop. Default is 1, which makes loop an ellipse when n is also equal to 1. In this case floop will automatically make a call to \code{\link{fel}}. See details.
 }
   \item{period}{
 length of time required to make a full loop. Reciprocal of frequency, and if times="equal" the number of points needed to make a full loop.
