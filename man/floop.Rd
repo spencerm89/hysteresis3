@@ -49,8 +49,8 @@ Allows the user to fit classical loops with any n>1 instead of just odd numbered
   \item{boot}{
 logical, if TRUE results will be bootstrapped by the default arguments of \code{\link{summary.fittedloop}}.
 }
-  \item{...}{
-other optional arguments, such as \code{seed},N,\code{cbb}, passed to \code{\link{summary.fittedloop}} if \code{boot=TRUE}.
+ \item{...}{
+other optional arguments such as \code{seed},N=number of realizations,\code{cbb}for circular block bootstrapping, passed to \code{\link{summary.ellipsefit}} if \code{boot=TRUE}.
 }
 }
 \details{
@@ -69,16 +69,16 @@ floop returns an object of class \code{fittedloop}.
   \item{fit.statistics}{rudimentary measures, based on the "harmonic2" method, include the Multivariate Final Prediction Error (MFPE) and the AIC for both the output alone and the two variables in combination. 
 Although degree of freedom adjustments are made for other methods, measures of fit require further study.}
 
-\item{values}{a named vector of parameter estimates. See \code{\link{loop.parameters}}.}
+\item{values}{a named vector of parameter estimates. See \code{\link{loop.parameters}}, same as Estimates here.}
  \item{Estimates}{a named vector of parameter estimates. See \code{\link{loop.parameters}}, same as values.}  
   \item{Std.Errors}{standard errors for parameters derived using the delta method.}
 
-\code{summary.fittedloop} returns an object of class \code{fittedloop} which consists of    
+\For boot=TRUE or code{summary.fittedloop} returns an object of class \code{fittedloop} which consists of    
   \item{values}{Bootstrapped parameter estimates, standard errors, quantiles, and more for each ellipse.}   
 \item{Boot.Estimates}{Bootstrapped parameter estimates with reduced bias.}    \item{Boot.Std.Errors}{Standard errors provided by bootstrapping.}
 
 
-If multiple loops are fit simultaneously there will be three arguments to the response, models which will contain the seperate model fits for each loop, Estimates which will have all of the parameter estimates in matrix form, and Std.Errors which will have all of the delta method standard errors in matrix form. See \code{\link{floop.repeated}}.
+If multiple loops are fit simultaneously there will be three arguments to the response, models which will contain the separate model fits for each loop, Estimates which will have all of the parameter estimates in matrix form, and Std.Errors which will have all of the delta method standard errors in matrix form. See \code{\link{floop.repeated}}.
 }
 \references{
 Lapshin, R. (1995) Analytical model for the approximation of hysteresis loop and its application to the scanning tunneling microscope.
