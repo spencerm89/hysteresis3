@@ -83,7 +83,7 @@ Although degree of freedom adjustments are made for other methods, measures of f
   \item{values}{Bootstrapped parameter estimates, standard errors, quantiles, and more for each ellipse.}   
   \item{Boot.Estimates}{Bootstrapped parameter estimates with reduced bias.}    \item{Boot.Std.Errors}{Standard errors provided by bootstrapping.}
      
-    If multiple ellipses are fit simultaneously there will be three arguments to the response, models which will contain the seperate model fits for each ellipse, Estimates which will have all of the parameter estimates in matrix form, and Std.Errors which will have all of the delta method standard errors in matrix form. See \code{\link{fel.repeated}}.
+    If multiple ellipses are fit simultaneously there will be three arguments to the response, models which will contain the separate model fits for each ellipse, Estimates which will have all of the parameter estimates in matrix form, and Std.Errors which will have all of the delta method standard errors in matrix form. See \code{\link{fel.repeated}}.
 }
 \references{
 Yang, F. and A. Parkhurst, Efficient Estimation of Elliptical Hysteresis. (submitted)
