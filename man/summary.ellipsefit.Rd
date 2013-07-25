@@ -62,7 +62,8 @@ When using the 'nls' or 'lm' methods individual bootstrap replications may occas
 
    \item{values }{matrix containing parameter and standard error estimates, bootstrap quantiles, and bootstrapped parameter estimates for a wide variety of parameters. See \code{\link{loop.parameters}}.}
   \item{Delta.Std.Errors}{the delta method standard errors.}
-     \item{fit.statistics}{the fit statistics. See \code{\link{fel}}.}
+     \item{fit.statistics}{rudimentary measures, based on the "harmonic2" method, include the Multivariate Final Prediction Error (MFPE) and the AIC for both the output alone and the two variables in combination. 
+Although degree of freedom adjustments are made for other methods, measures of fit require further study}
 
 For bootstrapping
  \item{summarycall}{the function call.}
