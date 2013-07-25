@@ -79,7 +79,7 @@ Although degree of freedom adjustments are made for other methods, measures of f
     \item{Std.Errors}{Delta standard errors produced by the delta method. See \code{\link{delta.error}}.}
   \item{residuals}{algebraic residuals from the model. The function \code{\link{residuals.ellipsefit}} can produce other types of residuals from an \code{ellipsefit} object.}
 
-\For boot=TRUE or code{summary.ellipsefit} returns an object of class \code{ellipsesummary} which consists of    
+When boot=TRUE \code{\link{summary.ellipsefit}} returns an object of class \code{ellipsesummary} which consists of    
   \item{values}{Bootstrapped parameter estimates, standard errors, quantiles, and more for each ellipse.}   
   \item{Boot.Estimates}{Bootstrapped parameter estimates with reduced bias.}    \item{Boot.Std.Errors}{Standard errors provided by bootstrapping.}
      
