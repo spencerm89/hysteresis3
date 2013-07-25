@@ -64,7 +64,7 @@ When using the 'nls' or 'lm' methods individual bootstrap replications may occas
   \item{Delta.Std.Errors}{the delta method standard errors.}
      \item{fit.statistics}{the fit statistics. See \code{\link{fel}}.}
 
-\For bootstrapping
+For bootstrapping
  \item{summarycall}{the function call.}
  \item{boot.data}{parameter estimates from individual bootstrap replications.}
     \item{Boot.Estimates}{bootstrapped estimates.}
