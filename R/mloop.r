@@ -15,7 +15,7 @@ mloop <- function(cx=0,cy=0,retention=0.2,b.x=0.6,b.y=0.8,n=1,m=1,sd.x=0,sd.y=0,
  coercion <- hysteresis.x*b.x
  hysteresis.y <- retention/b.y
   area <- (0.5/(beta((m+3)/2,(m+3)/2)*(m+2))+1/beta((m+1)/2,(m+1)/2)-1/beta((m+3)/2,(m-1)/2))/(2^m)*pi*abs(retention*b.x)
-  if ((n%%2)!=1 | (m%%2)!=1) warning("May not be an actual hysteresis loop if m and n are not both odd, check plot.")
+  if ((n%%2)!=1 | (m%%2)!=1) warning("Will not be an actual hysteresis loop if m is not odd, check plot.")
   ans <- list("values"=c("m"=m,"n"=n, "b.x"=b.x,"b.y"=b.y,"phase.angle"=phase.angle,"cx"=cx,"cy"=cy,"retention"=retention,
                          "coercion"=coercion,"area"=area, "beta.split.angle"=beta.split.angle,"hysteresis.x"=hysteresis.x, "hysteresis.y"=hysteresis.y),"x"=x,"y"=y)
 class(ans) <- "hysteresisloop"
