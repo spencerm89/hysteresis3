@@ -13,7 +13,7 @@ $$y_{t}=b_{y}*cos(2t\pi/T+\phi)^{n}+R*sin(2t\pi/T+\phi)^{m}+c_{y}+e_{y,t}$$
 
 where e is a random error term. These generalized transcendental equations (Lapshin) form a hysteresis loop for a given frequency or period and set of time points t=1,2...n.
 
-The plot below uses the function **mloop** which simulates hysteresis loops to show the effects of choosing various odd values for m and n.
+The plot below uses the function **mloop** which simulates hysteresis loops to show the effects of choosing various odd values for n and m.
 
 ```r
 library(knitr)
@@ -62,7 +62,7 @@ title("Hysteresis Loops for Odd Values of m and Even Values of n", outer = TRUE)
 
 ![plot of chunk moremandn](figure/moremandn.png) 
 
-A special case is when m=1 and n=1, this makes the hysteresis loop an ellipse. The centroid of the hysteresis loop is given by cx and cy as shown in the plot below of ellipses.
+A special case is when n=1 and m=1, this makes the hysteresis loop an ellipse. The centroid of the hysteresis loop is given by cx and cy as shown in the plot below of ellipses.
 
 ```r
 obj <- mloop(cx = 0, cy = 0, n.points = 100, period = 99)
@@ -123,7 +123,7 @@ for (i in c(1, 2, 4)) {
 
 ![plot of chunk retention](figure/retention1.png) ![plot of chunk retention](figure/retention2.png) ![plot of chunk retention](figure/retention3.png) 
 
-Finally the phase.angle, $\phi$, changes the location of points along the loop, but does not change the form of the loop itself. When phase.angle is zero the loop starting point is also the saturation point.
+Finally the phase.angle, $\phi$, changes the location of points along the loop, but does not change the form of the loop itself. When phase.angle is zero, the loop starting point is also the saturation point.
 
 ```r
 opts_chunk$set(out.extra = "style=\"display:block; margin: auto\"", fig.align = "center")
@@ -146,7 +146,12 @@ Fitting Ellipses
 ----------------------
 ### The Process
 
-**Hysteresis** contains one method for fitting hysteresis loops given any m and n in the function **floop**. In the special case of an ellipse where m=1 and n=1 four methods are available in the function **fel**. The two-step simple harmonic regression (harmonic2) method, the default, generally produces estimates that are less biased and have lower variances than those produced by the other methods. Since the focus is on rate-dependent hysteresis, knowledge of time for the observations is required. On the other hand, if the objective is solely to fit an ellipe, observation times are not needed for the other three methods.
+**Hysteresis** contains one method for fitting hysteresis loops given any n and m in the function **floop**. 
+In the special case of an ellipse where n=1 and m=1, four methods are available in the function **fel**. 
+The two-step simple harmonic regression (harmonic2) method, the default, generally produces estimates that are less 
+biased and have lower variances than those produced by the other methods. Since the focus is on rate-dependent hysteresis, 
+knowledge of time for the observations is required (or if unknown, times may be assumed to be equally spaced). On the 
+other hand, if the objective is solely to fit an ellipe, observation times are not needed for the other three methods
 
 ```r
 set.seed(24)
@@ -185,20 +190,18 @@ model
 In addition to the fundamental values of the model, **fel** also calculates a wide variety of derived parameters. Definitions for these parameters can be found using **help(loop.parameters)**.
 
 ```r
-model$values
+model$Estimates
 ```
 
 ```
-##           cx           cy          b.x          b.y  phase.angle 
-##    -0.013770    -0.027886     0.611746     0.829397     0.009077 
-##    retention         area          lag     coercion     rote.rad 
-##     0.423527     0.813959     1.803394     0.278211     1.011538 
-##     rote.deg   semi.major   semi.minor  split.angle hysteresis.x 
-##    57.956870     1.088509     0.238024    53.588291     0.454782 
-## hysteresis.y         ampx         ampy      focus.x      focus.y 
-##     0.510645     0.611746     0.931276     0.563540     0.900344 
-## eccentricity 
-##     0.975799
+##          b.x          b.y  phase.angle           cx           cy 
+##     0.611746     0.829397     0.009077    -0.013770    -0.027886 
+##    retention     coercion         area          lag  split.angle 
+##     0.423527     0.278211     0.813959     1.803394    53.588291 
+## hysteresis.x hysteresis.y         ampx         ampy     rote.deg 
+##     0.454782     0.510645     0.611746     0.931276    57.956870 
+##   semi.major   semi.minor      focus.x      focus.y eccentricity 
+##     1.088509     0.238024     0.563540     0.900344     0.975799
 ```
 
 A wide variety of functions have S3 methods for objects of class **ellipsefit** produced by **fel**. The most important of these is **summary.ellipsefit** which can be used to bootstrap and summarize models produced by **fel**.
@@ -386,12 +389,24 @@ lines(halftrueellipse$x, halftrueellipse$y, col = "red")
 Bootstrapping Fitted Ellipses
 ----------------------------------
 
-The function **summary.ellipsefit** bootstraps the x and y residuals of a fitted ellipse separately to produce standard errors and less biased estimates of ellipse parameters. These residuals are easy to obtain using the 'harmonic2' model which gives fitted points when fitting the ellipse, but somewhat more difficult to obtain from the other methods which do not use time as a variable in fitting the model and therefore cannot place observations on the ellipse. The function **fel** therefore gives two methods for producing x and y residuals using these methods. If times="unknown" fitted values are taken to be the points on the ellipse closest to their realized values. If times="equal" or a numeric vector and the period of the ellipse is known then the distances between points on the ellipse are taken as given and only the starting point of the ellipse is chosen to minimize the sum of squared distances between fitted and realized values. If times are available it is always better to give them, as the residuals given by times='unknown' will lead to standard errors for ellipse parameters that are biased downwards. If times really are unknown, a good alternative option for finding standard errors is to use the function **delta.error** which is currently available for every method except the direct.
+The function **summary.ellipsefit** bootstraps the x and y residuals of a fitted ellipse separately to produce 
+standard errors and less biased estimates of ellipse parameters. These residuals are easy to obtain using the 
+'harmonic2' model which gives fitted points when fitting the ellipse, but somewhat more difficult to obtain from the 
+other methods which do not use time as a variable in fitting the model and therefore cannot place observations on the 
+ellipse. The function **fel**, therefore, gives two methods for producing x and y residuals using these methods. If 
+times="unknown", fitted values are taken to be the points on the ellipse closest to their realized values. If 
+times="equal" or a numeric vector and the period of the ellipse is known, then the distances between points on the 
+ellipse are taken as given and only the starting point of the ellipse is chosen to minimize the sum of squared distances 
+between fitted and realized values. If times are available, it is always better to give them, as the residuals given 
+by times='unknown' will lead to standard errors for ellipse parameters that are biased downwards. If times really are 
+unknown, a good alternative is to use the delta standard errors from the function **delta.error** which is currently 
+available for every method except the direct.
 
 In addition residuals can be studentized within the **summary.ellipsefit** function by keeping studentize=TRUE, which is the default. Simulations suggest that studentization improves 95% bootstrap coverage intervals for all four methods.
 
-The value N gives the number of bootstrap replicates, its default is 1000 which may be  low in some situations (Efron). In each replication residuals are resampled with replacement and added to the original fitted values produced by **fel**. The simulated ellipse is then refit using the original method and parameter estimates are obtained. The standard deviations of these estimates are then used to give parameter standard errors, and less biased parameter estimates are obtained by subtracting the estimated bias produced by the method, mean(bootstrap estimates) - (original estimate), from the original estimate.
-
+The value N gives the number of bootstrap replicates, its default is 1000 which may be  low in some situations (Efron)
+In each replication, residuals are resampled with replacement and added to the original fitted values produced by **fel**. The simulated ellipse is then refit using the original method and parameter estimates are obtained. The standard deviations of these estimates are then used to give parameter standard errors, and less biased parameter estimates are obtained by subtracting the estimated bias produced by the method, mean(bootstrap estimates) - (original estimate), from the original estimate.
+Note, if reproducable resultes are desired use set.seed() command.
 ### Comparison of Bootstrapped Ellipses
 
 The fitted ellipses from above are then bootstrapped to reduce bias.
@@ -425,7 +440,11 @@ lines(halftrueellipse$x, halftrueellipse$y, col = "red")
 Fitting Multiple Ellipses Simultaneously
 ------------------------------------------
 
-The argument subjects in the function **fel** can be used to fit multiple ellipses which share the same period at one time. In this case **fel** produces an object of class ellipsefitlist instead of ellipsefit, and methods for objects of class ellipsefitlist exist for the functions **summary**, **plot**, and **print**. Ellipses are separated by levels given by the argument subjects, which can be either a vector or a list of vectors treated as factors. Below is an example of subjects in use.
+The argument subjects in the function **fel** can be used to fit multiple ellipses, which share the same period, 
+at one time. In this case **fel** produces an object of class ellipsefitlist instead of ellipsefit, and methods for 
+objects of class ellipsefitlist exist for the functions **summary**, **plot**, and **print**. Ellipses are separated 
+by levels given by the argument subjects, which can be either a vector or a list of vectors treated as factors. Below 
+is an example of fitting multiple ellipses using subjects option.
 
 
 ```r
@@ -554,20 +573,21 @@ To output summary results to excel readable file at current directory
 
 
 ```r
-write.csv(summodels$fundamental.values,"file_name.csv") and 
-write.csv(summodels$derived.values,"file_name.csv")
+write.table(models$Estimates,"file_name.txt") and 
+write.table(summodels$Boot.Estimates,"file_name.txt")
 ```
 
 
 Fitting Hysteresis Loops
 --------------------------
 
-The function **floop** can be used to fit hysteresis loops that have values of m and n which are different from 1. Below is an example of a hysteresis loop with m=3, n=5 being fit. To fit a hysteresis loop, values of m=3, n=5 must be given as arguments to **floop**.
+The function **floop** can be used to fit hysteresis loops with specific values of n and m as arguments to **floop**. Below is an example of a 
+hysteresis loop with n=5, m=3. 
 
 ```r
-loop <- mloop(m = 3, n = 5, sd.x = 0.02, sd.y = 0.02)
-fitloop <- floop(loop$x, loop$y, m = 3, n = 5, period = 24, times = "equal")
-fitloop$values
+loop <- mloop(n = 5, m = 3, sd.x = 0.02, sd.y = 0.02)
+fitloop <- floop(loop$x, loop$y, n = 5, m = 3, period = 24, times = "equal")
+fitloop$Estimates
 ```
 
 ```
