@@ -55,7 +55,7 @@ Fits multiple ellipses with one call, separated by the factors \code{subjects} a
     \item{models}{Separate model fits for each ellipse, see \code{\link{fel}}.}
     \item{Estimates}{Parameter estimates for all ellipses in matrix form.}
     \item{Std.Errors}{Delta standard errors for all ellipses in matrix form.}
-    \For boot=TRUE or code{summary.ellipsefitlist} returns an object of class \code{ellipsesummarylist} which consists of
+    When boot=TRUE \code{\link{fel.repeated}} returns an object of class \code{ellipsesummarylist} which consists of
     \item{models}{ a vector of separate model summaries for each ellipse, see \code{\link{summary.ellipsefit}}.}
     \item{values}{Bootstrapped parameter estimates, standard errors, quantiles, and more for each ellipse.}
     \item{Boot.Estimates}{Bootstrapped parameter estimates with reduced bias.}
