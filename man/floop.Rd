@@ -73,7 +73,7 @@ Although degree of freedom adjustments are made for other methods, measures of f
  \item{Estimates}{a named vector of parameter estimates. See \code{\link{loop.parameters}}, same as values.}  
   \item{Std.Errors}{standard errors for parameters derived using the delta method.}
 
-When boot=TRUE \code{\link{summary.fittedloop}} returns an object of class \code{fittedloop} which consists of    
+When boot=TRUE \code{\link{floop}} returns an object of class \code{fittedloop} which consists of    
   \item{values}{Bootstrapped parameter estimates, standard errors, quantiles, and more for each ellipse.}   
 \item{Boot.Estimates}{Bootstrapped parameter estimates with reduced bias.}    \item{Boot.Std.Errors}{Standard errors provided by bootstrapping.}
 
