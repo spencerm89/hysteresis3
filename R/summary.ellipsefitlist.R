@@ -44,28 +44,10 @@ else {
   values <- cbind(subjectdata,values)
   Estimates <- matrix(values[,"Estimate"],nrow=length(g$Estimates[,1]),byrow=TRUE)
   Estimates <- cbind(g$Estimates[,1:subjectlen],Estimates) 
-  colnames(Estimates) <- c(colnames(subjectdata),names(g$models[[1]]$values))
-  if (g$models[[1]]$method!="harmonic2") Estimates <- Estimates[,c(colnames(subjectdata),"b.x","b.y",
-                                  "cx","cy","retention","coercion","area",
-                                  "lag","split.angle","hysteresis.x","hysteresis.y","ampx","ampy","rote.deg","rote.rad",
-                                  "semi.major","semi.minor","focus.x","focus.y","eccentricity")]
-  else Estimates <- Estimates[,c(colnames(subjectdata),"b.x","b.y","phase.angle",
-                                 "cx","cy","retention","coercion","area",
-                                 "lag","split.angle","hysteresis.x","hysteresis.y","ampx","ampy","rote.deg","rote.rad",
-                                 "semi.major","semi.minor","focus.x","focus.y","eccentricity")]
+  colnames(Estimates) <- colnames(g$Estimates)
   Std.Error <- matrix(values[,"Std.Error"],nrow=length(g$Estimates[,1]),byrow=TRUE)
   Std.Error <- cbind(g$Estimates[,1:subjectlen],Std.Error) 
-  colnames(Std.Error) <- c(colnames(subjectdata),names(g$models[[1]]$values))
-  if (g$models[[1]]$method!="harmonic2") Std.Error <- Std.Error[,c(colnames(subjectdata),"b.x","b.y",
-                                                                   "cx","cy","retention","coercion","area",
-                                                                   "lag","split.angle","hysteresis.x","hysteresis.y","ampx","ampy","rote.deg","rote.rad",
-                                                                   "semi.major","semi.minor","focus.x","focus.y","eccentricity")]
-  else Std.Error <- Std.Error[,c(colnames(subjectdata),"b.x","b.y","phase.angle",
-                                 "cx","cy","retention","coercion","area",
-                                 "lag","split.angle","hysteresis.x","hysteresis.y","ampx","ampy","rote.deg","rote.rad",
-                                 "semi.major","semi.minor","focus.x","focus.y","eccentricity")]
-
-  
+  colnames(Std.Error) <- colnames(g$Estimates)
   dim(res) <- dim(g$models)
   dimnames(res) <- dimnames(g$models)
 }
