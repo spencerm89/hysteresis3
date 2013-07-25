@@ -6,7 +6,7 @@ function(g,...) {
   print(g$call)
   cat("Ellipse Fitting Method:\n")
   print(g$method)
-  if (g$method=="harmonic2") print("Two stage simple harmonic least squares")
+  if (g$method=="harmonic2") print("Two step simple harmonic least squares")
   else if (g$method=="nls") print("Non-linear least squares")
   else if (g$method=="direct") print("Direct specific least squares")
   else print("Linear Least Squares")

@@ -6,7 +6,7 @@ print.ellipsesummarylist <-
     print(g$models[1][[1]]$call)
     cat("Ellipse Fitting Method:\n")
     print(g$models[1][[1]]$method)
-    if (g$models[1][[1]]$method=="harmonic2") print("Two stage simple harmonic least squares")
+    if (g$models[1][[1]]$method=="harmonic2") print("Two step simple harmonic least squares")
     else if (g$models[1][[1]]$method=="nls") print("Non-linear least squares")
     else if (g$models[1][[1]]$method=="direct") print("Direct specific least squares")
     else print("Linear Least Squares")
