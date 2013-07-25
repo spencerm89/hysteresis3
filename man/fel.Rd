@@ -44,7 +44,7 @@ is \code{\link{na.omit}}. Value \code{link{na.exclude}} can be useful.
 logical, if TRUE results will be bootstrapped by \code{\link{summary.ellipsefit}}.
 }
   \item{...}{
-other optional arguments such as \code{seed},N,\code{cbb}, passed to \code{\link{summary.ellipsefit}} if \code{boot=TRUE}.
+other optional arguments such as \code{seed},N=number of realizations,\code{cbb}for circular block bootstrapping, passed to \code{\link{summary.ellipsefit}} if \code{boot=TRUE}.
 }
 }
 \details{
@@ -74,16 +74,16 @@ Bootstrapped estimates for parameter values are provided with \code{\link{summar
 \item{fit.statistics}{rudimentary measures, based on the "harmonic2" method, include the Multivariate Final Prediction Error (MFPE) and the AIC for both the output alone and the two variables in combination. 
 Although degree of freedom adjustments are made for other methods, measures of fit require further study.}
 
-\item{values}{a named vector of parameter estimates. See \code{\link{loop.parameters}}.}
+\item{values}{a named vector of parameter estimates. See \code{\link{loop.parameters}}, same as Estimates here.}
  \item{Estimates}{a named vector of parameter estimates. See \code{\link{loop.parameters}}, same as values.}
     \item{Std.Errors}{Delta standard errors produced by the delta method. See \code{\link{delta.error}}.}
   \item{residuals}{algebraic residuals from the model. The function \code{\link{residuals.ellipsefit}} can produce other types of residuals from an \code{ellipsefit} object.}
 
-\code{summary.ellipsefit} returns an object of class \code{ellipsesummary} which consists of    
+When boot=TRUE \code{\link{fel}} returns an object of class \code{ellipsesummary} which consists of    
   \item{values}{Bootstrapped parameter estimates, standard errors, quantiles, and more for each ellipse.}   
   \item{Boot.Estimates}{Bootstrapped parameter estimates with reduced bias.}    \item{Boot.Std.Errors}{Standard errors provided by bootstrapping.}
      
-    If multiple ellipses are fit simultaneously there will be three arguments to the response, models which will contain the seperate model fits for each ellipse, Estimates which will have all of the parameter estimates in matrix form, and Std.Errors which will have all of the delta method standard errors in matrix form. See \code{\link{fel.repeated}}.
+    If multiple ellipses are fit simultaneously there will be three arguments to the response, models which will contain the separate model fits for each ellipse, Estimates which will have all of the parameter estimates in matrix form, and Std.Errors which will have all of the delta method standard errors in matrix form. See \code{\link{fel.repeated}}.
 }
 \references{
 Yang, F. and A. Parkhurst, Efficient Estimation of Elliptical Hysteresis. (submitted)

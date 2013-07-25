@@ -52,19 +52,21 @@ If residuals are serially correlated than the argument cbb may be used to sample
 When using the 'nls' or 'lm' methods individual bootstrap replications may occasionally fail to converge, when this occurs an extra replication will take the place of the one that failed to converge and a warning message will be produced.
 }
 \value{
-\item{boot.data}{parameter estimates from individual bootstrap replications.}
+
 \item{call}{function call for original fit.}
-  \item{values }{matrix containing parameter and standard error estimates, bootstrap quantiles, and bootstrapped parameter estimates for a wide variety of parameters. See \code{\link{loop.parameters}}.}
-    \item{Boot.Estimates}{bootstrap estimates of parameters.}
-    \item{Boot.Std.Errors}{bootstrap standard errors.}
-  \item{method}{fitting method used. Only for \code{summary.ellipsefit}. See \code{\link{fel}}.}
-  \item{pred.x }{the bootstrap fitted values for x.}
-  \item{pred.y }{the bootstrap fitted values for y.}
+   \item{method}{fitting method used. Only for \code{summary.ellipsefit}. See \code{\link{fel}}.}
   \item{x }{the input x.}
-  \item{y}{the input y.}
-  \item{fit.statistics}{the fit statistics. See \code{\link{fel}}.}
+  \item{y}{the output y.}
+\item{pred.x }{the bootstrap fitted values for x.}
+  \item{pred.y }{the bootstrap fitted values for y.}
+
+   \item{values }{matrix containing parameter and standard error estimates, bootstrap quantiles, and bootstrapped parameter estimates for a wide variety of parameters. See \code{\link{loop.parameters}}.}
   \item{Delta.Std.Errors}{the delta method standard errors.}
-  \item{summarycall}{the function call.}
+     \item{fit.statistics}{the fit statistics. See \code{\link{fel}}.}
+
+For bootstrapping
+ \item{summarycall}{the function call.}
+ \item{boot.data}{parameter estimates from individual bootstrap replications.}
     \item{Boot.Estimates}{bootstrapped estimates.}
   \item{Boot.Std.Errors}{bootstrap standard errors.}
 }
@@ -79,7 +81,7 @@ Spencer Maynes, Fan Yang, and Anne Parkhurst.
 }
 \examples{
 #Loop example with circular block bootstrapping
-loop1 <- mloop(m=1,n=2,sd.x=0.05,sd.y=0.05)
+loop1 <- mloop(n=1,m=2,sd.x=0.05,sd.y=0.05)
 loop1.fit <- floop(loop1$x,loop1$y,m=1,n=2)
 boot.loop1 <- summary(loop1.fit,cbb=3)
 boot.loop1

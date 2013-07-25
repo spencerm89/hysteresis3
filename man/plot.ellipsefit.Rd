@@ -33,7 +33,7 @@ a fitted ellipse or hysteresis loop created by either \code{\link{fel}}, \code{\
 optional logical that numbers points from first to last. 
 }
   \item{values}{
-one of NULL, "inherent", "hysteresis", "hysteresis.all", "derived","ellipse", or "ellipse.all". Parameter values printed in title. Default is NULL in which case none are printed. See \code{\link{loop.parameters}} or \code{\link{ellipse.parameters}}
+one of NULL, "hysteresis", "inherent", "derived", "hysteresis.all", "ellipse", or "ellipse.all". Parameter values printed in title. Default is NULL in which case none are printed. See \code{\link{loop.parameters}} or \code{\link{ellipse.parameters}}
 }
   \item{xlim}{
 limits for x axis.
@@ -48,7 +48,9 @@ an overall title for the plot.
 draw an ellipse with 100 points. If \code{FALSE} use predicted ellipse from \code{ellipsefit} object which will result in a rougher shape.
 }
   \item{show}{
-a character vector of parameters to be shown in the plot. Possible values are "retention", "coercion", "b.x", "b.y", "focus.x", "focus.y", "rote.deg", "semi.major", and "semi.minor". \code{show} is only available for n=m=1. Only "retention", "coercion", "b.x", and "b.y" are available for all loops.
+a character vector of parameters to be shown in the plot. 
+Possible values are "retention", "coercion", "b.x", "b.y", "semi.major","semi.minor","rote.deg","focus.x",and "focus.y". 
+\code{show} is only available for ellipses and loops where n=m=1. 
 }
   \item{split.line}{
 logical. Whether to include the split line, which is the input output relationship when hysteresis is removed.
