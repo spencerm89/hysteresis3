@@ -38,8 +38,8 @@ If the default "equal" is used instead, time points are assumed to be equally sp
 an optional vector specifying a subset of observations to be used in the fitting process.
 }
   \item{na.action}{
-a function which indicates what should happen when the data contain NAs. The default is set by the \code{na.action} setting of \code{\link{options}}, the �factory-fresh� default 
-is \code{\link{na.omit}}. Value \code{link{na.exclude}} can be useful.
+a function which indicates what should happen when the data contain NAs. The default is set by the \code{na.action} setting of \code{\link{options}}, the factory-fresh default 
+is \code{\link{na.omit}}. Value \code{\link{na.exclude}} can be useful.
 }
   \item{extended.classical}{ 
 logical. If true, fit a classical hysteresis loop regardless of n. Uses \deqn{y_t=sign(cos(2*pi*t/period))*b.y*abs(cos(2*pi*t/period))^n + retention*sin(2*pi*t/period)^m+cy+e_{y,t}} instead of 
@@ -50,7 +50,7 @@ Allows the user to fit classical loops with any n>1 instead of just odd numbered
 logical, if TRUE results will be bootstrapped by the default arguments of \code{\link{summary.fittedloop}}.
 }
  \item{...}{
-other optional arguments such as \code{seed},N=number of realizations,\code{cbb}for circular block bootstrapping, passed to \code{\link{summary.ellipsefit}} if \code{boot=TRUE}.
+other optional arguments such as \code{seed}, N=number of realizations, \code{cbb} for circular block bootstrapping, passed to \code{\link{summary.ellipsefit}} if \code{boot=TRUE}.
 }
 }
 \details{
@@ -73,9 +73,7 @@ Although degree of freedom adjustments are made for other methods, measures of f
  \item{Estimates}{a named vector of parameter estimates. See \code{\link{loop.parameters}}, same as values.}  
   \item{Std.Errors}{standard errors for parameters derived using the delta method.}
 
-When boot=TRUE \code{\link{floop}} returns an object of class \code{fittedloop} which consists of    
-  \item{values}{Bootstrapped parameter estimates, standard errors, quantiles, and more for each ellipse.}   
-\item{Boot.Estimates}{Bootstrapped parameter estimates with reduced bias.}    \item{Boot.Std.Errors}{Standard errors provided by bootstrapping.}
+if \code{boot==TRUE} \code{\link{floop}} returns an object of class \code{loopsummary} by making a call to \code{\link{summary.fittedloop}}. See \code{\link{summary.fittedloop}}.
 
 
 If multiple loops are fit simultaneously there will be three arguments to the response, models which will contain the separate model fits for each loop, Estimates which will have all of the parameter estimates in matrix form, and Std.Errors which will have all of the delta method standard errors in matrix form. See \code{\link{floop.repeated}}.

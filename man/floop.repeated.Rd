@@ -59,7 +59,7 @@ Fits multiple loops with one call, separated by the factors \code{subjects} and 
     \item{models}{Separate model fits for each loop, see \code{\link{floop}}.}
     \item{Estimates}{Parameter estimates for all loops in matrix form.}
     \item{Std.Errors}{Delta standard errors for all loops in matrix form.}
-    When boot=TRUE \code{\link{floop.repeated}} returns an object of class \code{loopsummarylist} which consists of
+    When \code{boot=TRUE} \code{\link{floop.repeated}} returns an object of class \code{loopsummarylist} which consists of
     \item{models}{Separate model summaries for each ellipse, see \code{\link{summary.fittedloop}}.}
     \item{values}{Bootstrapped parameter estimates, standard errors, quantiles, and more for each loop.}
     \item{Boot.Estimates}{Bootstrapped parameter estimates with reduced bias.}

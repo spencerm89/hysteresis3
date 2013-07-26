@@ -38,13 +38,13 @@ optional and only used if \code{method="nls"}. See \code{\link{nls.control}}.
 }
   \item{na.action}{
 a function which indicates what should happen when the data contain NAs. The default is set by the \code{na.action} setting of \code{\link{options}}, the factory-fresh default 
-is \code{\link{na.omit}}. Value \code{link{na.exclude}} can be useful.
+is \code{\link{na.omit}}. Value \code{\link{na.exclude}} can be useful.
 }
   \item{boot}{
 logical, if TRUE results will be bootstrapped by \code{\link{summary.ellipsefit}}.
 }
   \item{...}{
-other optional arguments such as \code{seed},N=number of realizations,\code{cbb}for circular block bootstrapping, passed to \code{\link{summary.ellipsefit}} if \code{boot=TRUE}.
+other optional arguments such as \code{seed}, N=number of realizations, \code{cbb} for circular block bootstrapping, passed to \code{\link{summary.ellipsefit}} if \code{boot=TRUE}.
 }
 }
 \details{
@@ -79,9 +79,7 @@ Although degree of freedom adjustments are made for other methods, measures of f
     \item{Std.Errors}{Delta standard errors produced by the delta method. See \code{\link{delta.error}}.}
   \item{residuals}{algebraic residuals from the model. The function \code{\link{residuals.ellipsefit}} can produce other types of residuals from an \code{ellipsefit} object.}
 
-When boot=TRUE \code{\link{fel}} returns an object of class \code{ellipsesummary} which consists of    
-  \item{values}{Bootstrapped parameter estimates, standard errors, quantiles, and more for each ellipse.}   
-  \item{Boot.Estimates}{Bootstrapped parameter estimates with reduced bias.}    \item{Boot.Std.Errors}{Standard errors provided by bootstrapping.}
+if \code{boot==TRUE} \code{\link{fel}} returns an object of class \code{ellipsesummary} by making a call to \code{\link{summary.ellipsefit}}. See \code{\link{summary.ellipsefit}}.
      
     If multiple ellipses are fit simultaneously there will be three arguments to the response, models which will contain the separate model fits for each ellipse, Estimates which will have all of the parameter estimates in matrix form, and Std.Errors which will have all of the delta method standard errors in matrix form. See \code{\link{fel.repeated}}.
 }
