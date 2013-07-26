@@ -129,7 +129,7 @@ Finally the phase.angle, $\phi$, changes the location of points along the loop, 
 opts_chunk$set(out.extra = "style=\"display:block; margin: auto\"", fig.align = "center")
 opts_knit$set(animation.fun = hook_r2swf)
 obj <- mloop(retention = 0.5, n.points = 100, period = 99)
-for (i in c(0, pi/2, pi, 3 * pi/2)) {
+for (i in c(0, 90, 180, 240)) {
     plot(obj$x, obj$y, type = "l", xlab = "x", ylab = "y", main = "Starting Points for Different Values of phase.angle", 
         xlim = c(-0.6, 0.8))
     obj2 <- mloop(phase.angle = i, retention = 0.5, n.points = 1, period = 99)
@@ -373,13 +373,13 @@ dirmodel <- fel(halfellipse$x, halfellipse$y, method = "direct", period = 24,
 lmmodel <- fel(halfellipse$x, halfellipse$y, method = "lm", period = 24, times = "equal")
 nlsmodel <- fel(halfellipse$x, halfellipse$y, method = "nls", period = 24, times = "equal", 
     control = c(n.iter = 500))
-plot(harmodel, main = "Harmonic2 Model")
+plot(harmodel, main = "Harmonic2 Model", xlim = c(12, 30), ylim = c(24.7, 25.4))
 lines(halftrueellipse$x, halftrueellipse$y, col = "red")
-plot(dirmodel, main = "Direct Model")
+plot(dirmodel, main = "Direct Model", xlim = c(12, 30), ylim = c(24.7, 25.4))
 lines(halftrueellipse$x, halftrueellipse$y, col = "red")
-plot(lmmodel, main = "Linear Model")
+plot(lmmodel, main = "Linear Model", xlim = c(12, 30), ylim = c(24.7, 25.4))
 lines(halftrueellipse$x, halftrueellipse$y, col = "red")
-plot(nlsmodel, main = "Non-Linear Model")
+plot(nlsmodel, main = "Non-Linear Model", xlim = c(12, 30), ylim = c(24.7, 25.4))
 lines(halftrueellipse$x, halftrueellipse$y, col = "red")
 ```
 
@@ -424,7 +424,8 @@ nlssummodel <- summary(nlsmodel, N = 1000, studentize = TRUE)
 ```
 
 ```r
-plot(harsummodel, main = "Bootstrapped Harmonic2 Model")
+plot(harsummodel, main = "Bootstrapped Harmonic2 Model", xlim = c(12, 32), ylim = c(24.7, 
+    25.5))
 lines(halftrueellipse$x, halftrueellipse$y, col = "red")
 plot(dirsummodel, main = "Bootstrapped Direct Model")
 lines(halftrueellipse$x, halftrueellipse$y, col = "red")
