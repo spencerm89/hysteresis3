@@ -1,1 +1,1 @@
-coef.loopsummary <- function (g) g$values[,"Estimate"]
+coef.loopsummary <- function (g) g$values[,"Boot.Estimate"]

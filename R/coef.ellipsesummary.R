@@ -1,1 +1,1 @@
-coef.ellipsesummary <- function (g) g$values[,"Estimate"]
+coef.ellipsesummary <- function (g) g$values[,"Boot.Estimate"]

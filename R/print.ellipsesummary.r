@@ -12,7 +12,7 @@ function(g,...) {
   else print("Linear Least Squares")
   if (g$boot==TRUE) {
   cat("\nBootstrapped Estimates:\n")
-  print(g$values[,c("Estimate","Bias","Std.Error","q0.025","q0.975")],digits=4)
+  print(g$values[,c("Boot.Estimate","Bias","Std.Error","q0.025","q0.975")],digits=4)
   }
   else {
     Td <- qt(0.975,g$fit.statistics["d.f."]) 

@@ -31,23 +31,23 @@ error<-apply(bootdat,2,sd,na.rm=T)
 ranges<-apply(bootdat,2,quantile,probs=c(0.025,0.25,0.5,0.75,0.975),na.rm=T)
 themean<-apply(bootdat,2,mean,na.rm=T)
 full <- data.frame(g$values,t(ranges),error, themean)
-colnames(full) <- c("measured.value","q0.025","q0.25","q0.5","q0.75","q0.975","Std.Error","Mean")
+colnames(full) <- c("Orig.Estimate","q0.025","q0.25","q0.5","q0.75","q0.975","Std.Error","Boot.Mean")
 
-full$Bias <- full$Mean-full$measured.value
-full$Estimate <- full$measured.value-full$Bias
+full$Bias <- full$Boot.Mean-full$Orig.Estimate
+full$Boot.Estimate <- full$Orig.Estimate-full$Bias
 full[,c("q0.025","q0.25","q0.5","q0.75","q0.975")]<-full[,c("q0.025","q0.25","q0.5","q0.75","q0.975")]-
   full$Bias
 
-rad<-g$period.time+full["phase.angle","Estimate"]
-pred.x<-full["b.x","Estimate"]*cos(rad)+full["cx","Estimate"] 
-pred.y<-full["b.y","Estimate"]*cos(rad)+full["retention","Estimate"]*sin(rad)+full["cy","Estimate"]
+rad<-g$period.time+full["phase.angle","Boot.Estimate"]
+pred.x<-full["b.x","Boot.Estimate"]*cos(rad)+full["cx","Boot.Estimate"] 
+pred.y<-full["b.y","Boot.Estimate"]*cos(rad)+full["retention","Boot.Estimate"]*sin(rad)+full["cy","Boot.Estimate"]
 
 
 full <- full[c("b.x","b.y","phase.angle",
                "cx","cy","retention","coercion","area",
                "lag","split.angle","hysteresis.x","hysteresis.y","ampx","ampy","rote.deg","rote.rad",
                "semi.major","semi.minor","focus.x","focus.y","eccentricity"),]
-bootEst<-full[,"Estimate"]
+bootEst<-full[,"Boot.Estimate"]
 names(bootEst) <- rownames(full)
 bootStd<-full[,"Std.Error"]
 names(bootStd) <- rownames(full)

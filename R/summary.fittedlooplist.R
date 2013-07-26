@@ -11,7 +11,7 @@ summary.fittedlooplist <- function(g,N=1000,boot=TRUE,seed=NULL,...) {
   if (length(dim(g$models))==1) {
     thesubjects <- rep(rownames(g$Estimates),each=length(g$models[[1]]$values))
     values <- cbind("Subject"=thesubjects,values)
-    Estimates <- matrix(values[,"Estimate"],nrow=length(g$Estimates[,1]),byrow=TRUE)
+    Estimates <- matrix(values[,"Boot.Estimate"],nrow=length(g$Estimates[,1]),byrow=TRUE)
     rownames(Estimates) <- rownames(g$Estimates)
     colnames(Estimates) <- names(g$models[[1]]$values)
     Std.Error <- matrix(values[,"Std.Error"],nrow=length(g$Estimates[,1]),byrow=TRUE)
@@ -23,7 +23,7 @@ summary.fittedlooplist <- function(g,N=1000,boot=TRUE,seed=NULL,...) {
     subjectdata <- apply(g$Estimates[,1:subjectlen],2,rep,each=length.values)
     colnames(subjectdata) <- colnames(g$Estimates)[1:subjectlen]
     values <- cbind(subjectdata,values)
-    Estimates <- matrix(values[,"Estimate"],nrow=length(g$Estimates[,1]),byrow=TRUE)
+    Estimates <- matrix(values[,"Boot.Estimate"],nrow=length(g$Estimates[,1]),byrow=TRUE)
     Estimates <- cbind(g$Estimates[,1:subjectlen],Estimates) 
     colnames(Estimates) <- c(colnames(subjectdata),names(g$models[[1]]$values))
     Std.Error <- matrix(values[,"Std.Error"],nrow=length(g$Estimates[,1]),byrow=TRUE)

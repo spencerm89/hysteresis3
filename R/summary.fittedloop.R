@@ -17,20 +17,20 @@ summary.fittedloop <- function(g,boot=TRUE,N=1000,cbb=NULL,joint=FALSE,seed=NULL
     ranges<-apply(bootdat,2,quantile,probs=c(0.025,0.25,0.5,0.75,0.975),na.rm=T)
     themean<-apply(bootdat,2,mean,na.rm=T)
     full <- data.frame(g$values,t(ranges),error, themean,g$Std.Errors)
-    colnames(full) <- c("measured.value","q0.025","q0.25","q0.5","q0.75","q0.975","Std.Error","Mean","Delta.Error")
+    colnames(full) <- c("Orig.Estimate","q0.025","q0.25","q0.5","q0.75","q0.975","Std.Error","Boot.Mean","Delta.Error")
     
-    full$Bias <- full$Mean-full$measured.value
-    full$Estimate <- full$measured.value-full$Bias
+    full$Bias <- full$Boot.Mean-full$Orig.Estimate
+    full$Boot.Estimate <- full$Orig.Estimate-full$Bias
     full[,c("q0.025","q0.25","q0.5","q0.75","q0.975")]<-full[,c("q0.025","q0.25","q0.5","q0.75","q0.975")]-
       full$Bias
     
-    rad<-g$period.time+full["phase.angle","Estimate"]
-    pred.x<-full["b.x","Estimate"]*cos(rad)+full["cx","Estimate"] 
+    rad<-g$period.time+full["phase.angle","Boot.Estimate"]
+    pred.x<-full["b.x","Boot.Estimate"]*cos(rad)+full["cx","Boot.Estimate"] 
     if (g$extended.classical==FALSE)
-      pred.y<-full["b.y","Estimate"]*cos(rad)^g$values["n"]+full["retention","Estimate"]*sin(rad)^g$values["m"]+full["cy","Estimate"]
+      pred.y<-full["b.y","Boot.Estimate"]*cos(rad)^g$values["n"]+full["retention","Boot.Estimate"]*sin(rad)^g$values["m"]+full["cy","Boot.Estimate"]
     else
-      pred.y<-sign(cos(rad))*full["b.y","Estimate"]*abs(cos(rad))^g$values["n"]+full["retention","Estimate"]*sin(rad)^g$values["m"]+full["cy","Estimate"]
-   bootEst<-full[,"Estimate"]
+      pred.y<-sign(cos(rad))*full["b.y","Boot.Estimate"]*abs(cos(rad))^g$values["n"]+full["retention","Boot.Estimate"]*sin(rad)^g$values["m"]+full["cy","Boot.Estimate"]
+   bootEst<-full[,"Boot.Estimate"]
     names(bootEst) <- rownames(full)
     bootStd<-full[,"Std.Error"]
     names(bootStd) <- rownames(full)
