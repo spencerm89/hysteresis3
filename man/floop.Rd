@@ -75,6 +75,9 @@ Although degree of freedom adjustments are made for other methods, measures of f
 
 if \code{boot==TRUE} \code{\link{floop}} returns an object of class \code{loopsummary} by making a call to \code{\link{summary.fittedloop}}. See \code{\link{summary.fittedloop}}.
 
+For bootstrapping
+    \item{Boot.Estimates}{bootstrapped estimates.}
+  \item{Boot.Std.Errors}{bootstrap standard errors.}
 
 If multiple loops are fit simultaneously there will be three arguments to the response, models which will contain the separate model fits for each loop, Estimates which will have all of the parameter estimates in matrix form, and Std.Errors which will have all of the delta method standard errors in matrix form. See \code{\link{floop.repeated}}.
 }
