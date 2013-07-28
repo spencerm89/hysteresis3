@@ -80,7 +80,11 @@ Although degree of freedom adjustments are made for other methods, measures of f
   \item{residuals}{algebraic residuals from the model. The function \code{\link{residuals.ellipsefit}} can produce other types of residuals from an \code{ellipsefit} object.}
 
 if \code{boot==TRUE} \code{\link{fel}} returns an object of class \code{ellipsesummary} by making a call to \code{\link{summary.ellipsefit}}. See \code{\link{summary.ellipsefit}}.
-     
+
+For bootstrapping
+    \item{Boot.Estimates}{bootstrapped estimates.}
+  \item{Boot.Std.Errors}{bootstrap standard errors.}
+
     If multiple ellipses are fit simultaneously there will be three arguments to the response, models which will contain the separate model fits for each ellipse, Estimates which will have all of the parameter estimates in matrix form, and Std.Errors which will have all of the delta method standard errors in matrix form. See \code{\link{fel.repeated}}.
 }
 \references{
