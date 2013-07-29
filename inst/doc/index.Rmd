@@ -110,7 +110,7 @@ In the special case of an ellipse where n=1 and m=1, four methods are available 
 The two-step simple harmonic regression (harmonic2) method, the default, generally produces estimates that are less 
 biased and have lower variances than those produced by the other methods. Since the focus is on rate-dependent hysteresis, 
 knowledge of time for the observations is required (or if unknown, times may be assumed to be equally spaced). On the 
-other hand, if the objective is solely to fit an ellipe, observation times are not needed for the other three methods
+other hand, if the objective is solely to fit an ellipe, observation times are not needed for the other three methods.
 ```{r}
 set.seed(24)
 ellipse1 <- mel(method=2,retention=0.4,b.x=0.6,b.y=0.8,cx=0,cy=0,sd.x=0.1,sd.y=0.1,phase.angle=0,period=24,n.points=24)
@@ -132,7 +132,7 @@ Another important S3 method is for the function **plot**.
 
 plot(model,main="2-step Simple Harmonic Regression Ellipse Example")
 ```
-In addition S3 methods exist for **fitted**, **print**, and **residuals**.
+In addition, S3 methods exist for **fitted**, **print**, and **residuals**.
 
 ### Comparison of Ellipse Estimation Methods
 
@@ -147,7 +147,8 @@ The 'direct' method uses different fundamental parameters than the 'harmonic2' m
 ```{r}
 summodel$values
 ```
-The four plots below illustrate a comparison of the four methods for fitting an ellipse to simulated data. The data points are based on the ellipse in red.
+The four plots below illustrate a comparison of the four methods for fitting an ellipse to simulated data. The data 
+points are based on the simulated red ellipse; the fitted ellipse is in black.
 ```{r tests,fig.width=10,fig.height=10,warning=FALSE,message=FALSE}
 set.seed(11)
 par(mfrow=c(2,2))
@@ -183,14 +184,14 @@ by times='unknown' will lead to standard errors for ellipse parameters that are 
 unknown, a good alternative is to use the delta standard errors from the function **delta.error** which is currently 
 available for every method except the direct.
 
-In addition residuals can be studentized within the **summary.ellipsefit** function by keeping studentize=TRUE, which is the default. Simulations suggest that studentization improves 95% bootstrap coverage intervals for all four methods.
+In addition, residuals can be studentized within the **summary.ellipsefit** function by keeping studentize=TRUE, which is the default. Simulations suggest that studentization improves 95% bootstrap coverage intervals for all four methods.
 
-The value N gives the number of bootstrap replicates, its default is 1000 which may be  low in some situations (Efron)
+The value N gives the number of bootstrap replicates, its default is 1000 which may be  low in some situations (Efron).
 In each replication, residuals are resampled with replacement and added to the original fitted values produced by **fel**. The simulated ellipse is then refit using the original method and parameter estimates are obtained. The standard deviations of these estimates are then used to give parameter standard errors, and less biased parameter estimates are obtained by subtracting the estimated bias produced by the method, mean(bootstrap estimates) - (original estimate), from the original estimate.
 Note, if reproducable resultes are desired use set.seed() command.
 ### Comparison of Bootstrapped Ellipses
 
-The fitted ellipses from above are then bootstrapped to reduce bias.
+The fitted black ellipses from above are then bootstrapped to reduce bias.
 ```{r boottest,fig.width=10,fig.height=10}
 par(mfrow=c(2,2))
 harsummodel<-summary(harmodel,N=1000,studentize=TRUE)
@@ -211,10 +212,10 @@ Fitting Multiple Ellipses Simultaneously
 ------------------------------------------
 
 The argument subjects in the function **fel** can be used to fit multiple ellipses, which share the same period, 
-at one time. In this case **fel** produces an object of class ellipsefitlist instead of ellipsefit, and methods for 
-objects of class ellipsefitlist exist for the functions **summary**, **plot**, and **print**. Ellipses are separated 
+at one time. In this case **fel** produces an object of class **ellipsefitlist** instead of **ellipsefit**, and methods for 
+objects of class **ellipsefitlist** exist for the functions **summary**, **plot**, and **print**. Ellipses are separated 
 by levels given by the argument subjects, which can be either a vector or a list of vectors treated as factors. Below 
-is an example of fitting multiple ellipses using subjects option.
+is an example of fitting multiple ellipses using the subjects option.
 
 ```{r multiple,warning=FALSE}
 data(EllipseData)
