@@ -158,13 +158,13 @@ harmodel<-fel(halfellipse$x,halfellipse$y,method="harmonic2",period=24,times="eq
 dirmodel<-fel(halfellipse$x,halfellipse$y,method="direct",period=24,times="equal")
 lmmodel<-fel(halfellipse$x,halfellipse$y,method="lm",period=24,times="equal")
 nlsmodel<-fel(halfellipse$x,halfellipse$y,method="nls",period=24,times="equal",control=c(n.iter=500))
-plot(harmodel,main="Harmonic2 Model",xlim=c(12,30),ylim=c(24.7,25.4))
+plot(harmodel,main="Harmonic2 Model",xlim=c(12,28.5),ylim=c(24.6,25.35))
 lines(halftrueellipse$x,halftrueellipse$y,col="red")
-plot(dirmodel,main="Direct Model",xlim=c(12,30),ylim=c(24.7,25.4))
+plot(dirmodel,main="Direct Model",xlim=c(12,28.5),ylim=c(24.6,25.35))
 lines(halftrueellipse$x,halftrueellipse$y,col="red")
-plot(lmmodel,main="Linear Model",xlim=c(12,30),ylim=c(24.7,25.4))
+plot(lmmodel,main="Linear Model",xlim=c(12,28.5),ylim=c(24.6,25.35))
 lines(halftrueellipse$x,halftrueellipse$y,col="red")
-plot(nlsmodel,main="Non-Linear Model",xlim=c(12,30),ylim=c(24.7,25.4))
+plot(nlsmodel,main="Non-Linear Model",xlim=c(12,28.5),ylim=c(24.6,25.35))
 lines(halftrueellipse$x,halftrueellipse$y,col="red")
 ```
 
@@ -198,13 +198,13 @@ harsummodel<-summary(harmodel,N=1000,studentize=TRUE)
 dirsummodel<-summary(dirmodel,N=1000,studentize=TRUE)
 lmsummodel<-summary(lmmodel,N=1000,studentize=TRUE)
 nlssummodel<-summary(nlsmodel,N=1000,studentize=TRUE)
-plot(harsummodel,main="Bootstrapped Harmonic2 Model",xlim=c(12,32),ylim=c(24.7,25.5))
+plot(harsummodel,main="Bootstrapped Harmonic2 Model",,xlim=c(12,30),ylim=c(24.6,25.6))
 lines(halftrueellipse$x,halftrueellipse$y,col="red")
-plot(dirsummodel,main="Bootstrapped Direct Model")
+plot(dirsummodel,main="Bootstrapped Direct Model",xlim=c(12,30),ylim=c(24.6,25.6))
 lines(halftrueellipse$x,halftrueellipse$y,col="red")
-plot(lmsummodel,main="Bootstrapped Lm Model")
+plot(lmsummodel,main="Bootstrapped Lm Model",xlim=c(12,30),ylim=c(24.6,25.6))
 lines(halftrueellipse$x,halftrueellipse$y,col="red")
-plot(nlssummodel,main="Bootstrapped Nls Model")
+plot(nlssummodel,main="Bootstrapped Nls Model",xlim=c(12,30),ylim=c(24.6,25.6))
 lines(halftrueellipse$x,halftrueellipse$y,col="red")
 ```
 
@@ -230,8 +230,8 @@ To output summary results to excel readable file at current directory
 ----------------------------------------------------------------------
 
 ```{r mid,eval=FALSE}
-write.table(models$Estimates,"file_name.txt") and 
-write.table(summodels$Boot.Estimates,"file_name.txt")
+## write.table(models$Estimates,"file_name.txt") and 
+## write.table(summodels$Boot.Estimates,"file_name.txt")
 ```
 
 Fitting Hysteresis Loops
