@@ -188,7 +188,7 @@ In addition, residuals can be studentized within the **summary.ellipsefit** func
 
 The value N gives the number of bootstrap replicates, its default is 1000 which may be  low in some situations (Efron).
 In each replication, residuals are resampled with replacement and added to the original fitted values produced by **fel**. The simulated ellipse is then refit using the original method and parameter estimates are obtained. The standard deviations of these estimates are then used to give parameter standard errors, and less biased parameter estimates are obtained by subtracting the estimated bias produced by the method, mean(bootstrap estimates) - (original estimate), from the original estimate.
-Note, if reproducable resultes are desired use set.seed() command.
+Note, if reproducable results are desired use set.seed() command.
 ### Comparison of Bootstrapped Ellipses
 
 The fitted black ellipses from above are then bootstrapped to reduce bias.
