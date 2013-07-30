@@ -35,11 +35,11 @@ error<-apply(bootdat,2,sd,na.rm=T)
 themean<-apply(bootdat,2,mean,na.rm=T)
 ranges<-apply(bootdat,2,quantile,probs=c(0.025,0.25,0.5,0.75,0.975),na.rm=T)
 full <- data.frame(g$values,t(ranges),error,themean)
-colnames(full) <- c("Orig.Estimate","q0.025","q0.25","q0.5","q0.75","q0.975","Std.Error","Boot.Mean")
+colnames(full) <- c("Orig.Estimate","B.q0.025","B.q0.25","B.q0.5","B.q0.75","B.q0.975","Std.Error","Boot.Mean")
     
 full$Bias <- full$Boot.Mean-full$Orig.Estimate
 full$Boot.Estimate <- full$Orig.Estimate-full$Bias   
-    full[,c("q0.025","q0.25","q0.5","q0.75","q0.975")]<-full[,c("q0.025","q0.25","q0.5","q0.75","q0.975")]-
+    full[,c("B.q0.025","B.q0.25","B.q0.5","B.q0.75","B.q0.975")]<-full[,c("B.q0.025","B.q0.25","B.q0.5","B.q0.75","B.q0.975")]-
       full$Bias
     
     
