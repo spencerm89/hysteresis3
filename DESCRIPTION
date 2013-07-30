@@ -1,7 +1,7 @@
 Package: hysteresis
 Title: Tools for Modeling Rate-Dependent Hysteretic Processes and Ellipses
 Version: 1.0
-Date: 2013-1-22
+Date: 2013-7-30
 Author: Spencer Maynes, Fan Yang, and Anne Parkhurst
 Maintainer: Spencer Maynes <smaynes89@gmail.com>
 Depends: car, msm
