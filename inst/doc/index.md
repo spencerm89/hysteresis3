@@ -361,12 +361,12 @@ The four plots below illustrate a comparison of the four methods for fitting an 
 points are based on the simulated red ellipse; the fitted ellipse is in black.
 
 ```r
-set.seed(11)
+set.seed(12)
 par(mfrow = c(2, 2))
-halfellipse <- mel(method = 2, cx = 20, cy = 25, retention = 0.2, b.x = 7, b.y = 0.2, 
-    sd.x = 0.5, sd.y = 0.05, period = 24, n.points = 16, phase.angle = pi/2)
-halftrueellipse <- mel(method = 2, cx = 20, cy = 25, retention = 0.2, b.x = 7, 
-    b.y = 0.2, phase.angle = 0, period = 99, n.points = 100)
+halfellipse <- mel(method = 2, cx = 20, cy = 25, retention = 1.2, b.x = 14, 
+    b.y = 0.8, sd.x = 1, sd.y = 0.2, period = 24, n.points = 16, phase.angle = pi/2)
+halftrueellipse <- mel(method = 2, cx = 20, cy = 25, retention = 1.2, b.x = 14, 
+    b.y = 0.8, phase.angle = 0, period = 99, n.points = 100)
 harmodel <- fel(halfellipse$x, halfellipse$y, method = "harmonic2", period = 24, 
     times = "equal")
 dirmodel <- fel(halfellipse$x, halfellipse$y, method = "direct", period = 24, 
@@ -374,15 +374,13 @@ dirmodel <- fel(halfellipse$x, halfellipse$y, method = "direct", period = 24,
 lmmodel <- fel(halfellipse$x, halfellipse$y, method = "lm", period = 24, times = "equal")
 nlsmodel <- fel(halfellipse$x, halfellipse$y, method = "nls", period = 24, times = "equal", 
     control = c(n.iter = 500))
-plot(harmodel, main = "Harmonic2 Model", xlim = c(12, 28.5), ylim = c(24.6, 
-    25.35))
+plot(harmodel, main = "Harmonic2 Model", xlim = c(5, 34), ylim = c(23.4, 26.9))
 lines(halftrueellipse$x, halftrueellipse$y, col = "red")
-plot(dirmodel, main = "Direct Model", xlim = c(12, 28.5), ylim = c(24.6, 25.35))
+plot(dirmodel, main = "Direct Model", xlim = c(5, 34), ylim = c(23.4, 26.9))
 lines(halftrueellipse$x, halftrueellipse$y, col = "red")
-plot(lmmodel, main = "Linear Model", xlim = c(12, 28.5), ylim = c(24.6, 25.35))
+plot(lmmodel, main = "Linear Model", xlim = c(5, 34), ylim = c(23.4, 26.9))
 lines(halftrueellipse$x, halftrueellipse$y, col = "red")
-plot(nlsmodel, main = "Non-Linear Model", xlim = c(12, 28.5), ylim = c(24.6, 
-    25.35))
+plot(nlsmodel, main = "Non-Linear Model", xlim = c(5, 34), ylim = c(23.4, 26.9))
 lines(halftrueellipse$x, halftrueellipse$y, col = "red")
 ```
 
@@ -418,26 +416,40 @@ The fitted black ellipses from above are then bootstrapped to reduce bias.
 par(mfrow = c(2, 2))
 harsummodel <- summary(harmodel, N = 1000, studentize = TRUE)
 dirsummodel <- summary(dirmodel, N = 1000, studentize = TRUE)
+```
+
+```
+## Warning: Bootstrapped rote.deg values on both sides of 0, 180 degrees.
+```
+
+```r
 lmsummodel <- summary(lmmodel, N = 1000, studentize = TRUE)
+```
+
+```
+## Warning: Bootstrapped rote.deg values on both sides of 0, 180 degrees.
+```
+
+```r
 nlssummodel <- summary(nlsmodel, N = 1000, studentize = TRUE)
 ```
 
 ```
-## Warning: The function nls failed to converge 878 times.
+## Warning: The function nls failed to converge 577 times.
 ```
 
 ```r
-plot(harsummodel, main = "Bootstrapped Harmonic2 Model", , xlim = c(12, 30), 
-    ylim = c(24.6, 25.4))
+plot(harsummodel, main = "Bootstrapped Harmonic2 Model", xlim = c(5, 34), ylim = c(23.4, 
+    26.9))
 lines(halftrueellipse$x, halftrueellipse$y, col = "red")
-plot(dirsummodel, main = "Bootstrapped Direct Model", xlim = c(12, 30), ylim = c(24.6, 
-    25.4))
+plot(dirsummodel, main = "Bootstrapped Direct Model", xlim = c(5, 34), ylim = c(23.4, 
+    26.9))
 lines(halftrueellipse$x, halftrueellipse$y, col = "red")
-plot(lmsummodel, main = "Bootstrapped Lm Model", xlim = c(12, 30), ylim = c(24.6, 
-    25.4))
+plot(lmsummodel, main = "Bootstrapped Lm Model", xlim = c(5, 34), ylim = c(23.4, 
+    26.9))
 lines(halftrueellipse$x, halftrueellipse$y, col = "red")
-plot(nlssummodel, main = "Bootstrapped Nls Model", xlim = c(12, 30), ylim = c(24.6, 
-    25.4))
+plot(nlssummodel, main = "Bootstrapped Nls Model", xlim = c(5, 34), ylim = c(23.4, 
+    26.9))
 lines(halftrueellipse$x, halftrueellipse$y, col = "red")
 ```
 
@@ -509,121 +521,121 @@ summodels
 ## 
 ## Bootstrapped Value Estimates:
 ##       Parameter Subject Boot.Estimate       Bias Std.Error B.q0.025
-## 1           b.x       A      0.572016  1.655e-03  0.039244  0.49804
-## 2           b.y       A      0.792487 -1.276e-03  0.041176  0.71097
-## 4            cx       A     -0.019393 -1.305e-03  0.026981 -0.07309
-## 5            cy       A     -0.019218 -4.535e-04  0.023141 -0.06489
-## 6     retention       A      0.374928  1.314e-03  0.059369  0.25944
-## 7      coercion       A      0.245333  1.028e-03  0.040943  0.16710
-## 8          area       A      0.673910  4.168e-03  0.115820  0.45931
-## 9           lag       A      1.687662  7.829e-03  0.279949  1.15851
-## 10  split.angle       A     54.181401 -1.256e-01  2.285018 49.36573
-## 11 hysteresis.x       A      0.428753  6.924e-04  0.065931  0.29993
-## 12 hysteresis.y       A      0.469806  5.721e-03  0.091070  0.30948
-## 13         ampx       A      0.572016  1.655e-03  0.039244  0.49804
-## 14         ampy       A      0.874343  1.769e-03  0.032954  0.81089
-## 15     rote.deg       A     57.861310  2.926e-02  2.204352 53.57479
-## 17   semi.major       A      1.023532  2.335e-03  0.035539  0.95741
-## 18   semi.minor       A      0.209586  8.104e-04  0.035047  0.14372
-## 19      focus.x       A      0.533506  1.903e-04  0.040858  0.45387
-## 20      focus.y       A      0.849638  8.350e-04  0.034624  0.78077
-## 21 eccentricity       A      0.979509 -7.666e-04  0.007426  0.96173
-## 22          b.x       B      0.548887  1.383e-03  0.027551  0.49715
-## 23          b.y       B      0.846666  1.187e-03  0.052114  0.74604
-## 25           cx       B      0.017299  9.851e-04  0.019898 -0.02159
-## 26           cy       B     -0.008026  4.644e-04  0.021826 -0.05328
-## 27    retention       B      0.817752 -5.536e-04  0.053668  0.70714
-## 28     coercion       B      0.381955 -8.381e-05  0.029838  0.32382
-## 29         area       B      1.410172  2.538e-03  0.116313  1.18574
-## 30          lag       B      2.933674 -3.991e-03  0.219591  2.49917
-## 31  split.angle       B     57.095822 -7.999e-02  2.104690 52.41357
-## 32 hysteresis.x       B      0.695866 -1.895e-03  0.041428  0.60965
-## 33 hysteresis.y       B      0.959660  4.184e-03  0.112225  0.76114
-## 34         ampx       B      0.548887  1.383e-03  0.027551  0.49715
-## 35         ampy       B      1.175156  2.413e-03  0.031809  1.11537
-## 36     rote.deg       B     69.642412 -4.843e-03  1.486387 66.53892
-## 38   semi.major       B      1.245995  2.936e-03  0.031133  1.18922
-## 39   semi.minor       B      0.360237 -1.855e-04  0.028389  0.30479
-## 40      focus.x       B      0.415302  8.225e-04  0.030432  0.35968
-## 41      focus.y       B      1.119016  2.159e-03  0.034426  1.05335
-## 42 eccentricity       B      0.957680 -1.363e-04  0.007267  0.94097
-## 43          b.x       C      0.997853  1.115e-03  0.032795  0.93510
-## 44          b.y       C      0.817728  3.319e-04  0.033426  0.75631
-## 46           cx       C     -0.003803 -3.267e-04  0.022168 -0.04635
-## 47           cy       C     -0.016203  2.988e-04  0.022216 -0.05820
-## 48    retention       C      0.417557 -3.141e-03  0.040157  0.33336
-## 49     coercion       C      0.454315 -2.875e-03  0.043124  0.36923
-## 50         area       C      1.309022 -8.439e-03  0.132821  1.03953
-## 51          lag       C      1.803528 -1.246e-02  0.173737  1.45553
-## 52  split.angle       C     39.334788 -2.057e-02  1.476543 36.53420
-## 53 hysteresis.x       C      0.455281 -3.375e-03  0.040619  0.37225
-## 54 hysteresis.y       C      0.509370 -2.785e-03  0.057162  0.39964
-## 55         ampx       C      0.997853  1.115e-03  0.032795  0.93510
-## 56         ampy       C      0.917212 -1.718e-04  0.031511  0.85855
-## 57     rote.deg       C     42.294621 -3.760e-02  1.522676 39.18956
-## 59   semi.major       C      1.317929  1.322e-03  0.031908  1.25944
-## 60   semi.minor       C      0.316175 -2.370e-03  0.030900  0.25255
-## 61      focus.x       C      0.947009  1.390e-03  0.034544  0.87931
-## 62      focus.y       C      0.861610  6.782e-05  0.033000  0.80060
-## 63 eccentricity       C      0.971144  1.541e-04  0.005836  0.95895
+## 1           b.x       A      0.574509 -8.385e-04  0.037431  0.50348
+## 2           b.y       A      0.794051 -2.841e-03  0.040349  0.70837
+## 4            cx       A     -0.020668 -3.024e-05  0.027063 -0.07604
+## 5            cy       A     -0.018024 -1.647e-03  0.023386 -0.06443
+## 6     retention       A      0.376002  2.398e-04  0.061468  0.25945
+## 7      coercion       A      0.246588 -2.277e-04  0.042477  0.16689
+## 8          area       A      0.678603 -5.247e-04  0.119367  0.45434
+## 9           lag       A      1.689300  6.190e-03  0.290875  1.15331
+## 10  split.angle       A     54.120576 -6.474e-02  2.257509 49.67720
+## 11 hysteresis.x       A      0.429229  2.165e-04  0.068542  0.29870
+## 12 hysteresis.y       A      0.470088  5.439e-03  0.094566  0.30780
+## 13         ampx       A      0.574509 -8.385e-04  0.037431  0.50348
+## 14         ampy       A      0.876050  6.231e-05  0.031396  0.81271
+## 15     rote.deg       A     57.795168  9.541e-02  2.127687 53.71213
+## 17   semi.major       A      1.026292 -4.251e-04  0.033368  0.96228
+## 18   semi.minor       A      0.210479 -8.189e-05  0.036435  0.14322
+## 19      focus.x       A      0.535917 -2.221e-03  0.038906  0.46031
+## 20      focus.y       A      0.851234 -7.601e-04  0.033098  0.78347
+## 21 eccentricity       A      0.979491 -7.479e-04  0.007739  0.96111
+## 22          b.x       B      0.550386 -1.167e-04  0.028142  0.49615
+## 23          b.y       B      0.846942  9.115e-04  0.051770  0.73772
+## 25           cx       B      0.017993  2.915e-04  0.019799 -0.02037
+## 26           cy       B     -0.007523 -3.844e-05  0.021971 -0.05242
+## 27    retention       B      0.815950  1.249e-03  0.054344  0.70835
+## 28     coercion       B      0.382551 -6.799e-04  0.029621  0.32439
+## 29         area       B      1.410940  1.770e-03  0.117596  1.19550
+## 30          lag       B      2.929015  6.691e-04  0.220792  2.49530
+## 31  split.angle       B     57.029720 -1.389e-02  2.050469 52.92804
+## 32 hysteresis.x       B      0.695003 -1.032e-03  0.041547  0.60896
+## 33 hysteresis.y       B      0.957191  6.653e-03  0.113342  0.75900
+## 34         ampx       B      0.550386 -1.167e-04  0.028142  0.49615
+## 35         ampy       B      1.174076  3.493e-03  0.031289  1.11874
+## 36     rote.deg       B     69.544118  9.345e-02  1.517144 66.75018
+## 38   semi.major       B      1.245519  3.412e-03  0.030832  1.18923
+## 39   semi.minor       B      0.360606 -5.540e-04  0.028190  0.30658
+## 40      focus.x       B      0.416983 -8.582e-04  0.031336  0.35557
+## 41      focus.y       B      1.117742  3.432e-03  0.033385  1.05803
+## 42 eccentricity       B      0.957532  1.138e-05  0.007024  0.94273
+## 43          b.x       C      0.999541 -5.738e-04  0.032719  0.93575
+## 44          b.y       C      0.819676 -1.617e-03  0.034761  0.74965
+## 46           cx       C     -0.003013 -1.117e-03  0.022289 -0.05131
+## 47           cy       C     -0.016403  4.991e-04  0.021847 -0.05694
+## 48    retention       C      0.415141 -7.246e-04  0.040991  0.33522
+## 49     coercion       C      0.452085 -6.449e-04  0.044809  0.36504
+## 50         area       C      1.303543 -2.960e-03  0.136125  1.05250
+## 51          lag       C      1.790603  4.684e-04  0.181169  1.43525
+## 52  split.angle       C     39.356081 -4.186e-02  1.509683 36.31896
+## 53 hysteresis.x       C      0.452306 -3.997e-04  0.042222  0.36748
+## 54 hysteresis.y       C      0.504983  1.601e-03  0.060012  0.39303
+## 55         ampx       C      0.999541 -5.738e-04  0.032719  0.93575
+## 56         ampy       C      0.917783 -7.427e-04  0.031715  0.85489
+## 57     rote.deg       C     42.267618 -1.060e-02  1.519074 39.19802
+## 59   semi.major       C      1.320077 -8.254e-04  0.032443  1.25648
+## 60   semi.minor       C      0.314325 -5.195e-04  0.031924  0.25296
+## 61      focus.x       C      0.949430 -1.030e-03  0.034426  0.88076
+## 62      focus.y       C      0.862951 -1.273e-03  0.033826  0.79469
+## 63 eccentricity       C      0.971613 -3.147e-04  0.006168  0.95820
 ##    B.q0.975
-## 1   0.64989
-## 2   0.87065
-## 4   0.02946
-## 5   0.02574
-## 6   0.50011
-## 7   0.32800
-## 8   0.92294
-## 9   2.26043
-## 10 58.58179
-## 11  0.55885
-## 12  0.66939
-## 13  0.64989
-## 14  0.94049
-## 15 62.14093
-## 17  1.09762
-## 18  0.28152
-## 19  0.61102
-## 20  0.91557
-## 21  0.99103
-## 22  0.60320
-## 23  0.94467
-## 25  0.05659
-## 26  0.03513
-## 27  0.91837
-## 28  0.44292
-## 29  1.63900
-## 30  3.34834
-## 31 60.86683
-## 32  0.76979
-## 33  1.19457
-## 34  0.60320
-## 35  1.24217
-## 36 72.55881
-## 38  1.31300
-## 39  0.41855
-## 40  0.47655
-## 41  1.18862
-## 42  0.97065
-## 43  1.06118
-## 44  0.88147
-## 46  0.03982
-## 47  0.02745
-## 48  0.49365
-## 49  0.53588
-## 50  1.56130
-## 51  2.12548
-## 52 42.32532
-## 53  0.52878
-## 54  0.62029
-## 55  1.06118
-## 56  0.97743
-## 57 45.41560
-## 59  1.38273
-## 60  0.37435
-## 61  1.01392
-## 62  0.92407
-## 63  0.98155
+## 1   0.64949
+## 2   0.86995
+## 4   0.03045
+## 5   0.02542
+## 6   0.49075
+## 7   0.32939
+## 8   0.90834
+## 9   2.28407
+## 10 58.29837
+## 11  0.56409
+## 12  0.67809
+## 13  0.64949
+## 14  0.93432
+## 15 61.96910
+## 17  1.09025
+## 18  0.28234
+## 19  0.60977
+## 20  0.91382
+## 21  0.99095
+## 22  0.60528
+## 23  0.94814
+## 25  0.05641
+## 26  0.03385
+## 27  0.92402
+## 28  0.44170
+## 29  1.64101
+## 30  3.36676
+## 31 60.83445
+## 32  0.77278
+## 33  1.20694
+## 34  0.60528
+## 35  1.23806
+## 36 72.54574
+## 38  1.31023
+## 39  0.41547
+## 40  0.47878
+## 41  1.18442
+## 42  0.97018
+## 43  1.06452
+## 44  0.88306
+## 46  0.03946
+## 47  0.02515
+## 48  0.49020
+## 49  0.53832
+## 50  1.56434
+## 51  2.14449
+## 52 42.19979
+## 53  0.53290
+## 54  0.62751
+## 55  1.06452
+## 56  0.97959
+## 57 45.30059
+## 59  1.38124
+## 60  0.37567
+## 61  1.01595
+## 62  0.92511
+## 63  0.98231
 ```
 
 ```r
@@ -657,13 +669,13 @@ fitloop$Estimates
 
 ```
 ##                n                m              b.x              b.y 
-##         5.000000         3.000000         0.597120         0.796553 
+##        5.0000000        3.0000000        0.6058893        0.8040306 
 ##      phase.angle               cx               cy        retention 
-##         0.270452        -0.005683         0.006659         0.210346 
+##        0.2717733        0.0002124       -0.0028775        0.2084032 
 ##         coercion             area              lag beta.split.angle 
-##         0.322437         0.295942         0.986160         0.000000 
+##        0.3257342        0.2975149        0.9687446        0.0000000 
 ##     hysteresis.x     hysteresis.y 
-##         0.539987         0.264070
+##        0.5376134        0.2591980
 ```
 
 ```r
@@ -685,18 +697,18 @@ summary(fitloop)
 ## 
 ## Bootstrapped Estimates:
 ##                  Boot.Estimate       Bias Std.Error  B.q0.025 B.q0.975
-## b.x                   0.597094  2.677e-05  0.005685  0.586282 0.609205
-## b.y                   0.797009 -4.561e-04  0.010052  0.777503 0.815828
-## phase.angle           0.541157 -2.707e-01  0.009961  0.252361 0.289167
-## cx                   -0.005548 -1.352e-04  0.004200 -0.013790 0.002545
-## cy                    0.006473  1.856e-04  0.005080 -0.002958 0.017166
-## retention             0.210727 -3.814e-04  0.009112  0.192928 0.228104
-## coercion              0.322578 -1.411e-04  0.004742  0.313469 0.331918
-## area                  0.296460 -5.187e-04  0.013232  0.270502 0.321630
-## lag                   0.987275 -1.115e-03  0.043288  0.899265 1.066948
-## beta.split.angle      0.000000  0.000e+00  0.000000  0.000000 0.000000
-## hysteresis.x          0.540249 -2.626e-04  0.005873  0.527860 0.550665
-## hysteresis.y          0.264346 -2.761e-04  0.012122  0.239843 0.286785
+## b.x                  6.056e-01  2.973e-04  0.007221  0.591645 0.620196
+## b.y                  8.047e-01 -6.212e-04  0.007530  0.788912 0.818001
+## phase.angle          5.432e-01 -2.714e-01  0.011624  0.248321 0.294083
+## cx                   1.879e-05  1.936e-04  0.005021 -0.009450 0.010354
+## cy                  -2.897e-03  1.921e-05  0.003617 -0.009739 0.004556
+## retention            2.086e-01 -2.400e-04  0.007476  0.194574 0.223187
+## coercion             3.256e-01  8.631e-05  0.004854  0.316458 0.335362
+## area                 2.977e-01 -1.979e-04  0.011223  0.276347 0.319822
+## lag                  9.691e-01 -3.138e-04  0.035536  0.903374 1.039759
+## beta.split.angle     0.000e+00  0.000e+00  0.000000  0.000000 0.000000
+## hysteresis.x         5.377e-01 -1.206e-04  0.004882  0.528436 0.547150
+## hysteresis.y         2.593e-01 -6.374e-05  0.009931  0.240990 0.279112
 ```
 
 
